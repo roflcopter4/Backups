@@ -10,7 +10,6 @@ dir is optional; '/usr/share/fonts' is the default.
 EOF
     exit 1
 }
-
 if [ "$#" -eq 0 ] || [ "$1" = '-h' ] || [ "$1" = '--help' ]; then
     ShowUsage
 elif [ $# -eq 1 ]; then
@@ -23,16 +22,14 @@ else
     echo 'Too many paramaters.'
     ShowUsage
 fi
-
-
 for file1 in "${locDir}"/*; do
     file1_base="$(basename "$file1")"
     if [ -d "$file1" ]; then
-        echo "File 1 ->"${file1} is a dir!"
+        echo "File 1 ->${file1} is a dir!"
         for file2 in "${file1}"/*; do
             file2_base="$(basename "$file2")"
             if [ -f "${sysDir}/${file1_base}/${file2_base}" ]; then
-                echo "${file1}/${file2_base}"		is a duplicate, deleting"
+                echo "${file1}/${file2_base}		is a duplicate, deleting"
                 ! $DEBUG && rm -f "$file2"
             fi
         done
